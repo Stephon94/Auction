@@ -116,6 +116,6 @@ def Auction(itemBeingAuct):
 
 
 
-decision = raw_input("Would you like to add a new item to the auction?")
+decision = raw_input("Would you like to add a new item to the auction?""**Just press Enter**")
 if len(decision) < 1:
     auctionSetup()
