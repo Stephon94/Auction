@@ -72,7 +72,7 @@ def Auction(itemBeingAuct):
                     break
             elif float(bid) > highestBid:
                 highestBid = float(bid)
-                print person + "has made the highest bid with: $"+str(highestBid)
+                print person + " has made the highest bid with: $"+str(highestBid)
 
             elif float(bid) < highestBid:
                 print "Your bid must be greater than "+"$"+str(highestBid)
@@ -92,11 +92,15 @@ def Auction(itemBeingAuct):
                     print person + "you will now be skipped"
                     passMe.append(person)
 
-        break
+        if len(passMe) == len(participants)-1:
+            break
                 
     print"The bidding for the "+itemBeingAuct+" is now over!"
-
-    print"Sold to " + person + ", for $" +  str(highestBid) + "!!"
+    for person in participants:
+        if person not in passMe:
+            winner = person
+    
+    print"Sold to " + winner + " for $" +  str(highestBid) + "!!"
 
             
 
