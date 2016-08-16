@@ -13,7 +13,6 @@ def auctionSetup():
     
     #This try & except statement is used to make sure the user entered a number. If they didn't, it starts over.
     try:
-        float(itemPrice)
         itemPrice = float(itemPrice)
     except:
         print "Please enter only numbers"
@@ -27,7 +26,6 @@ def auctionSetup():
     if decision == "y":
         auctionSetup()
     if decision == "n":
-        print "T
         participantSetup()
     else:
         print "Please enter 'y' or 'n'"
@@ -59,19 +57,18 @@ def participantSetup():
 
 def Auction(itemBeingAuct):
     #Gets the starting bid. Then makes sure it isn't higher than the reserved price.  
-    highestBid = raw_input("What is the starting bid? $")
+    startBid = raw_input("What is the starting bid? $")
     try:
-        float(highestBid)
+        float(startBid)
     except Exception, e:
         print "Please enter only numbers"
         print str(e)
         Auction(itemBeingAuct)
-    else:
-        highestBid = float(highestBid)
-    if highestBid > float(forAuction.get(itemBeingAuct)):
+    if float(startBid) > float(forAuction.get(itemBeingAuct)):
         print "Starting bid cannot be higher than reserved price"
         Auction(itemBeingAuct)
-    elif highestBid < float(forAuction.get(itemBeingAuct)):
+    elif float(startBid) < float(forAuction.get(itemBeingAuct)):
+        highestBid = float(startBid)
         print "The starting bid is $"+str(highestBid)
 
      #Just explaining how to pass if you can't bid any higher
@@ -113,6 +110,8 @@ def Auction(itemBeingAuct):
 
         if len(passMe) == len(participants)-1:
             break
+                    
+            
 
     #Letting it be known the auction is over. Also letting us know who the winner is & whether it as success or not.         
     print"The bidding for the "+itemBeingAuct+" is now over!"
@@ -146,22 +145,4 @@ def Auction(itemBeingAuct):
 
 auctionSetup()
 
-print"The bidding for the "+itemBeingAuct+" is now over!"
-    for person in participants:
-        if person not in passMe:
-            winner = person
-    
-print"Sold to " + winner + " for $" +  str(highestBid) + "!!"
-
-
-if highestBid > float(forAuction.get(itemBeingAuct)):
-    print "The auction was a sucess!"
-
-else:
-    print "The aucion was a failure..."
-
-del forAuction[itemBeingAuct]
-
-if len(forAuction) > 0:
-    participantSetup()
     
